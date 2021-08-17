@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
-const width = Dimensions.get('window').width * .85;
+const width = Dimensions.get('window').width * .8;
 
 const SliderText = (props) => {
   const multiplier = props.multiplier || 1.15;
