@@ -11,8 +11,8 @@ const SliderText = (props) => {
   const logic = maximumValue * multiplier;
   const [sliderValue, setSliderValue] = useState(props.sliderValue || 0);
 
-  const left = sliderValue >= 100000000 ? sliderValue * width / logic - 40 : sliderValue * width / logic;
-  console.log("SLIDER VALAUE :::", props.sliderValue,left)
+  const left = sliderValue >= 100000000 ? sliderValue * (props.width || width) / logic - 40 : sliderValue * (props.width || width)/ logic;
+  console.log("SLIDER VALAUE :::", props.sliderValue, left)
 
   const sendSliderValue = (slider) => {
     setSliderValue(slider);
@@ -23,14 +23,14 @@ const SliderText = (props) => {
     <View style={[styles.slider, props.containerStyle]}>
       <View
         style={{
-          transform: [props.isRTL ?{ translateX: -left } : { translateX: left }]
+          transform: [props.isRTL ? { translateX: -left } : { translateX: left }]
         }}
       >
         {props.renderCustomLabel !== undefined ? props.renderCustomLabel() :
           <Text style={[styles.text, props.customCountStyle]}>{Math.floor(sliderValue)}</Text>}
       </View>
       <Slider
-        style={[styles.slider, props.sliderStyle,props.isRTL ?{transform :[{rotateY : "180deg"}]}:{}]}
+        style={[styles.slider, props.sliderStyle, props.isRTL ? { transform: [{ rotateY: "180deg" }] } : {}]}
         minimumValue={props.minimumValue || 0}
         maximumValue={maximumValue}
         step={stepValue}
@@ -40,7 +40,7 @@ const SliderText = (props) => {
         onValueChange={(e) => sendSliderValue(e)}
         onSlidingComplete={props.onSlidingComplete}
         value={value}
-          
+
       />
       <View style={styles.row}>
         <Text style={[styles.customLabel, props.customLabelStyle]}>{props.minimumValueLabel || ''}</Text>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     width: width - 20,
     marginTop: 10,
     alignSelf: 'center',
-    marginBottom:-10
+    marginBottom: -10
   },
   row: {
     flexDirection: 'row',
